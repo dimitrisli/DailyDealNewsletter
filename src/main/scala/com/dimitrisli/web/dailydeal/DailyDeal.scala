@@ -14,8 +14,8 @@ class DailyDeal extends Job {
     val emailify: Publisher=>String = (publisher:Publisher) => s"<strong>${publisher}</strong>: ${DailyDeal(publisher)}"
 
     send a new Mail(
-      from = "dimitrisli@gmail.com" -> "Dimitris Web Crawlers",
-      to = "dimitrisli@gmail.com",
+      from = "your@email" -> "YourWebCrawlerName",
+      to = "your@email,
       subject = "Tech Ebooks Daily Deals",
       message = "",
       richMessage = s"${publishers.map(emailify).mkString("<br />")}"
@@ -31,7 +31,7 @@ object DailyDeal {
     def dailyDeal(url:String) = strategy( url )
   }
 
-  val ManningDailyDeal = {
+  def ManningDailyDeal = {
 
     val ManningWebScrappingStrategy: WebScrappingStrategy  =
       (url:String) =>
@@ -42,21 +42,21 @@ object DailyDeal {
     WebScrap( ManningWebScrappingStrategy ).dailyDeal( "http://www.manning.com" )
   }
 
-  val OReillyDailyDeal = {
+  def OReillyDailyDeal = {
 
     val OReillyWebScrappingStrategy: WebScrappingStrategy = Jsoup.connect(_).get.select("a[href$=DEAL]").get(1).text
 
     WebScrap( OReillyWebScrappingStrategy ).dailyDeal( "http://oreilly.com" )
   }
 
-  val MicrosoftDailyDeal = {
+  def MicrosoftDailyDeal = {
 
     val MicrosoftWebScrappingStrategy: WebScrappingStrategy = Jsoup.connect(_).get.select("a[href$=MSDEAL]").get(1).text
 
     WebScrap( MicrosoftWebScrappingStrategy ).dailyDeal( "http://oreilly.com" )
   }
 
-  val APressDailyDeal = {
+  def APressDailyDeal = {
 
     val APressWebScrappingStrategy: WebScrappingStrategy = Jsoup.connect(_).get.select("div.block-dotd").get(0).select("a")
       .get(0).select("img").attr("alt")
@@ -64,7 +64,7 @@ object DailyDeal {
     WebScrap( APressWebScrappingStrategy ).dailyDeal( "http://www.apress.com" )
   }
 
-  val SpringerDailyDeal = {
+  def SpringerDailyDeal = {
 
     val SpringerWebScrappingStrategy: WebScrappingStrategy = Jsoup.connect(_).get.select("div.block-dotd").get(1).select("a")
       .get(0).select("img").attr("alt")
