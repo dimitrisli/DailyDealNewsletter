@@ -20,7 +20,7 @@ object Main {
                     .newTrigger
                     .withIdentity("triggerDailyDeal", "groupDailyDeal")
                     .startNow
-                    .withSchedule(CronScheduleBuilder.dailyAtHourAndMinute(12,0))
+                    .withSchedule(CronScheduleBuilder.dailyAtHourAndMinute(8,0))
                     .build
 
     sched.scheduleJob(job, trigger)
